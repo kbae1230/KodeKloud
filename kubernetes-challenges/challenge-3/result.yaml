@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: result-deployment
+  name: result-deployment
+  namespace: vote
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: result-deployment
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: result-deployment
+    spec:
+      containers:
+      - image: kodekloud/examplevotingapp_result:before
+        name: examplevotingapp-result-shxrp
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: result-service
+  namespace: vote
+spec:
+  type: NodePort
+  ports:
+    - port: 5001
+      targetPort: 80
+      nodePort: 31001
+  selector:
+    app: result-deployment
