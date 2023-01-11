@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: time-config
+  namespace: dvl1987
+data:
+  TIME_FREQ: "10"
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: time-check
+  namespace: dvl1987
+spec:
+  volumes:
+    - name: log-volume
+      emptyDir: {}
+  containers:
+    - name: time-check
+      image: busybox
+      command: ["/bin/sh", "-c", "while true; do date; sleep $TIME_FREQ;done"]
+      env:
+        # Define the environment variable
+        - name: TIME_FREQ # Notice that the case is different here
+          valueFrom:
+            configMapKeyRef:
+              name: time-config           # The ConfigMap this value comes from.
+              key: TIME_FREQ
+      volumeMounts:
+        - name: log-volume
+          mountPath: /opt/time

@@ -1,0 +1,3 @@
+k set image deploy nginx-deploy nginx=nginx:1.17
+
+k rollout undo deploy nignx-deploy

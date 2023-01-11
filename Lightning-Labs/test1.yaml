@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: log-volume
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: /opt/volume/nginx
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: log-claim
+spec:
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 200Mi
+  storageClassName: manual
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: logger
+spec:
+  volumes:
+  - name: mypd
+    persistentVolumeClaim:
+      claimName: log-claim
+  containers:
+  - name: logger
+    image: nginx:alpine
+    volumeMounts:
+      - mountPath: "/var/www/nginx"
+        name: mypd
