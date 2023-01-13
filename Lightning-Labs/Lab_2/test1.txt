@@ -1,0 +1,5 @@
+k get namespace
+k get pod --help
+k get pod --all-namespaces
+k get pod nignx1401 -n dev1401 -oyaml > test.yaml
+k replace -f test.yaml --force
