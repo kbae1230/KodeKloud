@@ -1,20 +1,20 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: throw-dice
+  name: dice
 spec:
   schedule: "*/1 * * * *"
   jobTemplate:
     spec:
+      backoffLimit: 25
+      activeDeadlineSeconds: 20
       template:
         spec:
           containers:
-            - name: throw-dice
+            - name: dice
               image: kodekloud/throw-dice
               imagePullPolicy: IfNotPresent
           restartPolicy: OnFailure
-          backoffLimit: 25
-          activeDeadlineSeconds: 20
 # apiVersion: batch/v1
 # kind: CronJob
 # metadata:
