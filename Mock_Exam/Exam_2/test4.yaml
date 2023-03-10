@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-wildcard-host
+spec:
+  rules:
+  - host: ckad-mock-exam-solution.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/video"
+        backend:
+          service:
+            name: my-video-service
+            port:
+              number: 8080  # 30093이 아닌 이유를 아직 못찾고 있음.

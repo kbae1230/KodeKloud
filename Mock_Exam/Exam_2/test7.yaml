@@ -1,0 +1,14 @@
+piVersion: batch/v1
+kind: Job
+metadata:
+  name: whalesay
+spec:
+  template:
+    spec:
+      containers:
+      - name: whalesay
+        image: docker/whalesay
+        command: ["/bin/bash", "-c",  "cowsay I am going to ace CKAD!"] # sh, -c 반드시 넣을 것
+      restartPolicy: Never
+  backoffLimit: 6
+  completions: 10

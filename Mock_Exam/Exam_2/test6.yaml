@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx1401
+  labels:
+    app: goproxy
+spec:
+  containers
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 8080
+    livenessProbe:
+      exec:
+        command:  # livenessProbe 에서는 sh, -c 필요 없음
+         - ls
+         - /var/www/html/probe
+      initialDelaySeconds: 10
+      periodSeconds: 60
