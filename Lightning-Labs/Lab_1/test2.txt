@@ -1,0 +1,2 @@
+k exec -it {} — sh
+nc -v -z -w 2 secure-service 80
