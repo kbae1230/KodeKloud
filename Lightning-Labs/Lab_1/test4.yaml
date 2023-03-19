@@ -24,5 +24,3 @@ spec:
       containers:
       - image: nginx:1.16
         name: nginx
-        resources: {}
-status: {}
