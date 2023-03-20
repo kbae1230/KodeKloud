@@ -26,10 +26,9 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app.kubernetes.io/name: proxy
+    app: my-webapp
   ports:
-  - name: front-end-service
-    protocol: TCP
-    port: 80
+  - port: 80
     targetPort: http-web-svc
+    protocol: TCP
     nodePort: 30083
