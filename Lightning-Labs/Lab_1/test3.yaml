@@ -20,7 +20,8 @@ spec:
   containers:
     - name: time-check
       image: busybox
-      command: ["/bin/sh", "-c", "while true; do date; sleep $TIME_FREQ;done"]
+      #  틀렸음
+      # command: ["/bin/sh", "-c", "while true; do date; sleep $TIME_FREQ;done > /opt/time/time-check.log"]
       env:
         # Define the environment variable
         - name: TIME_FREQ # Notice that the case is different here
