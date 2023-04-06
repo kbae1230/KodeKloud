@@ -8,6 +8,7 @@ Mount this in a pod called logger at the location /var/www/redis. This pod shoul
 
 Answer:
 
+pv 와 pvc acceessModes는 동일해야 한다.
 ---
 Quiz2:
 
@@ -17,7 +18,7 @@ Make sure that incoming connection from the pod webapp-color are successful.
 Important: Don't delete any current objects deployed.
 Important: Don't Alter Existing Objects!
 
-
+netpol 에서 위에 matchLabels
 ---
 Quiz3:
 
@@ -27,6 +28,7 @@ The time-check container should run the command: while true; do date; sleep $TIM
 The path /opt/time on the pod should mount a volume that lasts the lifetime of this pod.
 
 Answer:
+
 
 kubectl create namesapce dvl1987
 kubectl run pod time-check -n dvl1987 --image=busybox --dry-run=client -o yaml > test.yaml
@@ -43,9 +45,11 @@ The deployment should use RollingUpdate strategy with maxSurge=1, and maxUnavail
 Next upgrade the deployment to version 1.17.
 Finally, once all pods are updated, undo the update and go back to the previous version.
 
-Answer:
 
-k set deploy deployemnt container_name=image:tag
+kubectl set image deployment/redis-deploy nginx=nginx:1.17
+kubectl rollout undo deployment/redis-deploy
+
+Answer:
 
 ---
 Quiz5:
@@ -57,3 +61,4 @@ a. An Empty directory volume called data at path /redis-master-data.
 b. A configmap volume called redis-config at path /redis-master.
 c. The container should expose the port 6379.
 
+Answer:

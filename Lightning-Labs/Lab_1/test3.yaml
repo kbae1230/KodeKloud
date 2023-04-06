@@ -5,30 +5,28 @@ metadata:
   namespace: dvl1987
 data:
   TIME_FREQ: "10"
-
 ---
-
 apiVersion: v1
 kind: Pod
 metadata:
   name: time-check
   namespace: dvl1987
 spec:
-  volumes:
-    - name: log-volume
-      emptyDir: {}
   containers:
-    - name: time-check
-      image: busybox
-      #  틀렸음
-      # command: ["/bin/sh", "-c", "while true; do date; sleep $TIME_FREQ;done > /opt/time/time-check.log"]
-      env:
-        # Define the environment variable
-        - name: TIME_FREQ # Notice that the case is different here
-          valueFrom:
-            configMapKeyRef:
-              name: time-config           # The ConfigMap this value comes from.
-              key: TIME_FREQ
-      volumeMounts:
-        - name: log-volume
-          mountPath: /opt/time
+  - name: time-check
+    image: busybox
+    command: ["/bin/sh", "-c"]
+    args:
+    - while true; do date; sleep $TIME_FREQ; done >> /opt/time/time-check.log
+    env:
+    - name: TIME_FREQ
+      valueFrom:
+        configMapKeyRef:
+          name: time-config
+          key: TIME_FREQ
+    volumeMounts:
+    - name: time-volume
+      mountPath: /opt/time
+  volumes:
+  - name: time-volume
+    emptyDir: {}
