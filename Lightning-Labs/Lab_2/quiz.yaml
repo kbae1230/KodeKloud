@@ -7,6 +7,8 @@ This check should start after a delay of 10 seconds and run every 60 seconds.
 You may delete and recreate the object. Ignore the warnings from the probe.
 
 Answer:
+Need pod yaml.
+
 difference between readiness and liveness probe
 
 
@@ -19,6 +21,8 @@ The job should be non-parallel and complete the task once. Use a backoffLimit of
 If the task is not completed within 20 seconds the job should fail and pods should be terminated.
 
 Answer:
+? /root/throw-a-dice
+? 답 확인 필요 
 
 
 ---
@@ -30,6 +34,8 @@ The container should mount a read-only secret volume called secret-volume at the
 The secret being mounted has already been created for you and is called dotfile-secret.
 Make sure that the pod is scheduled on controlplane and no other node in the cluster.
 
+Answer:
+
 
 ---
 Quiz4:
@@ -39,8 +45,97 @@ The service video-service should be accessible on http://watch.ecom-store.com:30
 The service apparels-service should be accessible on http://apparels.ecom-store.com:30093/wear
 Here 30093 is the port used by the Ingress Controller
 
+Answer:
+
+# 아래 yaml로 해보기
+
+apiVersion: networking.k8s.io/v1
+
+kind: Ingress
+
+metadata:
+
+  name: ingress-vh-routing
+
+spec:
+
+  rules:
+
+  - host: "watch.ecom-store.com"
+
+    http:
+
+      paths:
+
+      - pathType: Prefix
+
+        path: "/video"
+
+        backend:
+
+          service:
+
+            name: video-service
+
+            port:
+
+              number: 30093
+
+  - host: "apparels.ecom-store.com"
+
+    http:
+
+      paths:
+
+      - pathType: Prefix
+
+        path: "/wear"
+
+        backend:
+
+          service:
+
+            name: apparels-service
+
+            port:
+
+              number: 30093
+
+# chat gpt yaml
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-vh-routing
+spec:
+  rules:
+  - host: watch.ecom-store.com
+    http:
+      paths:
+      - path: /video
+        pathType: Prefix
+        backend:
+          service:
+            name: video-service
+            port:
+              number: 30093
+  - host: apparels.ecom-store.com
+    http:
+      paths:
+      - path: /wear
+        pathType: Prefix
+        backend:
+          service:
+            name: apparels-service
+            port:
+              number: 30093
+
+
 ---
 Quiz5:
 
 A pod called dev-pod-dind-878516 has been deployed in the default namespace. 
 Inspect the logs for the container called log-x and redirect the warnings to /opt/dind-878516_logs.txt on the controlplane node
+
+Answer:
+
