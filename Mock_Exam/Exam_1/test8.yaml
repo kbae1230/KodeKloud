@@ -1,0 +1,9 @@
+k create cfm cm-3392845 --from-literal=DB_NAME=SQL3322 ...
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: game-demo
+data:
+  # property-like keys; each key maps to a simple value
+  DB_NAME: "SQL3322"
