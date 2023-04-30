@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: holy-api        # name stays the same
+spec:
+  replicas: 3           # 3 replicas
+  selector:
+    matchLabels:
+      id: holy-api
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        id: holy-api
+      name: pod1
+    spec:
+      containers:
+      - image: httpd:2.4.41-alpine
+        name: pod1
+        resources: {}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
