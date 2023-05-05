@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  creationTimestamp: null
+  name: tcronjob
+spec:
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+      name: tcronjob
+    spec:
+      failedJobsHistoryLimit: 3 # 실패 기록수 관리
+      successfulJobsHistoryLimit: 3 # 성공한 작업의 유지 갯수
+      completions: 3
+      parallelism: 3
+      backoffLimit: 3 # 실패 시 재시작
+      ttlSecondsAfterFinished: 100 # job이 성공하거나 실패한 후 일정시간 뒤에 pod 삭제
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - image: nginx
+            name: tcronjob
+            resources: {}
+          restartPolicy: Never
+  schedule: '*/2 * * * * *'
+status: {}
