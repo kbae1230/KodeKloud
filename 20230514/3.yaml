@@ -5,16 +5,18 @@ metadata:
   labels:
     run: time-check
   name: time-check
-  namespace: dvl1987
+  # namespace: dvl1987
 spec:
   containers:
   - command:
+    - sh
+    - -c
     - while true; do date; sleep $TIME_FREQ;done > /opt/time/time-check.log
     image: busybox
     name: time-check
     env:
         # Define the environment variable
-        - name: PLAYER_INITIAL_LIVES # Notice that the case is different here
+        - name: TIME_FREQ # Notice that the case is different here
                                      # from the key name in the ConfigMap.
           valueFrom:
             configMapKeyRef:
