@@ -1,0 +1,22 @@
+1. Get all namespaces with awk
+2. Check output the tstatus of pod. Make command to sh
+3. Job. parallelism, completions, labels
+4. helm uninstall, repo update, search repo, upgrade, show values, install --set
+5. secret base64 decode, grep annotations, describe secret
+6. Readiness-Probe probe는 container 안에!
+7. filtering pods and move namespace
+8. Rollout deployment
+9. Change pod to deploy
+10. Run pod, Expose service, Curl service, Write logs 
+11. docker, podman
+12. pv, pvc, deploy %중요 pvc는 namespace에 속한다.
+13. pvc, storage class
+14. secret %중요 secret snamespace
+15. Edit configmap file and Rollout %중요 --from-file=key1=/path/to/bar/file1.txt
+16. emptyDir, initContainers
+17. initContainers
+18. Fix ClusterIP service to be available inside the cluster
+19. Change ClusterIP to NodePort, find which nodes is the service reacchable
+20. Egress podselector or UDP/TCP protocol
+21. Make resources requests, limits and serviceAccount
+22. Label, annotate to pods with specific labels
