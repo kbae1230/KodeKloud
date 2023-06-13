@@ -1,0 +1,3 @@
+# k -n pluto expose pod project-plt-6cc-api --name project-plt-6cc-svc --port 3333 --target-port 80
+# k exec -it tmp -- curl project-plt-6cc-svc:3333 > /opt/course/10/service_test.html
+# k logs project-plt-6cc-api > /opt/course/10/service_test.log                     

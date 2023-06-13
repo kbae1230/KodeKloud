@@ -1,0 +1,11 @@
+2. 답 묘상
+3. label 붙이는 속도
+4. (다시) helm
+5. (다시)
+6. Readiness-Probe probe는 container 안에!
+9. Change pod to deploy
+10. Run pod, Expose service, Curl service, Write logs 
+11. docker, podman
+12. pv, pvc, deploy %중요 pvc는 namespace에 속한다.
+13. pvc, storage class
+14. secret %중요 secret snamespace
