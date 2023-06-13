@@ -1,4 +1,0 @@
-1. configmap env 지정 시  env.name으로 초기화
-2. deploy label 정의는 yaml로 만든 후 기입
-3. vim 여러 줄 tab 27,31 >>
-4. volumes, volumesMount 2개씩 쓰면 안됨 
